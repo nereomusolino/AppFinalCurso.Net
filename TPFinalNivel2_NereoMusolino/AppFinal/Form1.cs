@@ -139,7 +139,7 @@ namespace AppFinal
         {
             FormAgregar Agregar = new FormAgregar();
             Agregar.ShowDialog();
-
+            CargarBase();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using ClasesDominio;
 using ClasesNegocio;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -36,12 +37,9 @@ namespace AppFinal
             CargarImagen(txbUrlImagen.Text);
         }
 
-        private void btnAgregar_Click(object sender, EventArgs e)
+        private void ValidarRequeridos()
         {
-            ArticulosNegocio aux = new ArticulosNegocio();
-            Articulos obj = new Articulos();
-
-            if(txbCodigo.Text == "")
+            if (txbCodigo.Text == "")
             {
                 label1.Visible = true;
             }
@@ -64,12 +62,30 @@ namespace AppFinal
             if (txbUrlImagen.Text == "")
             {
                 label6.Visible = true;
-            }
+            }/*
             if (txbPrecio.Text == "")
             {
                 label7.Visible = true;
+            }*/
+        }
+
+        private bool ValidarTextbox()
+        {
+            if (!(cmbCategoria.Text == "" || txbCodigo.Text == "" || txbDescripcion.Text == "" || cmbMarca.Text == "" || txbNombre.Text == "" ||/* txbPrecio.Text == "" || */txbUrlImagen.Text == ""))
+            {
+                return true;
             }
-            if(!(cmbCategoria.Text == "" || txbCodigo.Text == "" || txbDescripcion.Text == "" || cmbMarca.Text == "" || txbNombre.Text == "" || txbPrecio.Text == "" || txbUrlImagen.Text == "" ))
+            return false;
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            ArticulosNegocio aux = new ArticulosNegocio();
+            Articulos obj = new Articulos();
+            
+            ValidarRequeridos();
+
+            if(ValidarTextbox())
             {
                 obj.Nombre = txbNombre.Text;
                 obj.CodigoArticulo = txbCodigo.Text;
@@ -77,12 +93,12 @@ namespace AppFinal
                 obj.MarcaArticulo = (Marca)cmbMarca.SelectedItem;
                 obj.CategoriaArticulo = (Categoria)cmbCategoria.SelectedItem;
                 obj.UrlImagen = txbUrlImagen.Text;
-                float precio = float.Parse(txbPrecio.Text);
-                obj.Precio = precio;
+                //obj.Precio = float.Parse(txbPrecio.ToString());
 
                 try
                 {
                     aux.Agregar(obj);
+                    this.Close();
                 }
                 catch (Exception)
                 {

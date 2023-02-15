@@ -66,12 +66,24 @@ namespace ClasesNegocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                //datos.setearConsulta("insert into ARTICULOS ");
+                datos.setearConsulta("insert into ARTICULOS values (@codigo,@nombre,@descripcion,@marca,@categoria,@url,@precio)");
+                datos.setearParametros("@codigo", obj.CodigoArticulo);
+                datos.setearParametros("@nombre", obj.Nombre);
+                datos.setearParametros("@descripcion", obj.Descripcion);
+                datos.setearParametros("@marca", obj.MarcaArticulo.Id);
+                datos.setearParametros("@categoria", obj.CategoriaArticulo.Id);
+                datos.setearParametros("@url", obj.UrlImagen);
+                datos.setearParametros("@precio", obj.Precio);
+                datos.ejecutarAccion();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConsulta();
             }
         }
 
