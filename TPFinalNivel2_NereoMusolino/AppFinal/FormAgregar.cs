@@ -62,8 +62,8 @@ namespace AppFinal
             if (txbUrlImagen.Text == "")
             {
                 label6.Visible = true;
-            }/*
-            if (txbPrecio.Text == "")
+            }
+            /*if (txbPrecio.Text == "")
             {
                 label7.Visible = true;
             }*/
@@ -71,7 +71,7 @@ namespace AppFinal
 
         private bool ValidarTextbox()
         {
-            if (!(cmbCategoria.Text == "" || txbCodigo.Text == "" || txbDescripcion.Text == "" || cmbMarca.Text == "" || txbNombre.Text == "" ||/* txbPrecio.Text == "" || */txbUrlImagen.Text == ""))
+            if (!(cmbCategoria.Text == "" || txbCodigo.Text == "" || txbDescripcion.Text == "" || cmbMarca.Text == "" || txbNombre.Text == "" || /*txbPrecio.Text == "" ||*/ txbUrlImagen.Text == ""))
             {
                 return true;
             }
@@ -93,7 +93,7 @@ namespace AppFinal
                 obj.MarcaArticulo = (Marca)cmbMarca.SelectedItem;
                 obj.CategoriaArticulo = (Categoria)cmbCategoria.SelectedItem;
                 obj.UrlImagen = txbUrlImagen.Text;
-                //obj.Precio = float.Parse(txbPrecio.ToString());
+                //obj.Precio = float.Parse(txbPrecio.Text);
 
                 try
                 {

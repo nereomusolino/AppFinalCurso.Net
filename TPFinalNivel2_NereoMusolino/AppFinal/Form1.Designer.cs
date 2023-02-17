@@ -104,6 +104,7 @@
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(54, 22);
             this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // toolStripSeparator3
             // 
@@ -118,6 +119,7 @@
             this.btnPapelera.Name = "btnPapelera";
             this.btnPapelera.Size = new System.Drawing.Size(23, 22);
             this.btnPapelera.Text = "toolStripButton4";
+            this.btnPapelera.Click += new System.EventHandler(this.btnPapelera_Click);
             // 
             // toolStrip
             // 

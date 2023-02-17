@@ -62,6 +62,13 @@ namespace AppFinal
             }
         }
 
+        private void OcultarListas()
+        {
+            dgvLista.Columns["UrlImagen"].Visible = false;
+            dgvLista.Columns["Id"].Visible = false;
+
+        }
+
         private void CargarBase()
         {
             ArticulosNegocio aux = new ArticulosNegocio();
@@ -70,6 +77,7 @@ namespace AppFinal
                 lista = aux.Listar();
                 dgvLista.DataSource = lista;
                 CargarImagen(lista[0].UrlImagen.ToString());
+                OcultarListas();
             }
             catch (Exception)
             {
@@ -140,6 +148,28 @@ namespace AppFinal
             FormAgregar Agregar = new FormAgregar();
             Agregar.ShowDialog();
             CargarBase();
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            ArticulosNegocio aux = new ArticulosNegocio();
+
+            try
+            {
+                aux.EliminarLogico((Articulos)dgvLista.CurrentRow.DataBoundItem);
+                CargarBase();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se pudo eliminar el dato");
+            }
+        }
+
+        private void btnPapelera_Click(object sender, EventArgs e)
+        {
+            FormPapelera form = new FormPapelera();
+            form.ShowDialog();
+
         }
     }
 }
