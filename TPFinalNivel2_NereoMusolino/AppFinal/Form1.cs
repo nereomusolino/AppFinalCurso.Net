@@ -10,12 +10,14 @@ using System.Windows.Forms;
 using ClasesNegocio;
 using ClasesDominio;
 using System.Data.SqlTypes;
+using System.Drawing.Text;
 
 namespace AppFinal
 {
     public partial class FormApp : Form
     {
         private List<Articulos> lista = new List<Articulos>();
+        private List<Articulos> listaPapelera = null;
 
         public FormApp()
         {
@@ -89,11 +91,13 @@ namespace AppFinal
 
         private void FormApp_Load(object sender, EventArgs e)
         {
+            FiltroPapelera();
             CargarBase();
             cmbCampo.Items.Add("Nombre");
             cmbCampo.Items.Add("Marca");
             cmbCampo.Items.Add("Categoría");
             cmbCampo.Items.Add("Precio");
+
         }
 
         private void dgvLista_SelectionChanged(object sender, EventArgs e)
@@ -158,6 +162,7 @@ namespace AppFinal
             {
                 aux.EliminarLogico((Articulos)dgvLista.CurrentRow.DataBoundItem);
                 CargarBase();
+                FiltroPapelera();
             }
             catch (Exception)
             {
@@ -165,11 +170,47 @@ namespace AppFinal
             }
         }
 
+        private bool ListaVacia(List<Articulos> lista)
+        {
+            if (lista == null)
+            {
+                return false;
+            }
+            if (lista.Count == 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private void FiltroPapelera()
+        {
+            ArticulosNegocio aux = new ArticulosNegocio();
+            listaPapelera = aux.ListarPapelera();
+            if (ListaVacia(listaPapelera) == true)
+            {
+                btnPapelera.Enabled = true;
+            }
+            else
+            {
+                btnPapelera.Enabled = false;
+            }
+        }
+
         private void btnPapelera_Click(object sender, EventArgs e)
         {
             FormPapelera form = new FormPapelera();
             form.ShowDialog();
+            FiltroPapelera();
+        }
 
+        private void btnModifcar_Click(object sender, EventArgs e)
+        {
+
+            FormAgregar Modificar = new FormAgregar((Articulos)dgvLista.CurrentRow.DataBoundItem);
+            Modificar.ShowDialog();
+            CargarBase();
+            
         }
     }
 }

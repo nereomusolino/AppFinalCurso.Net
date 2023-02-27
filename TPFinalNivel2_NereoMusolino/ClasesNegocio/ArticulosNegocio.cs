@@ -46,7 +46,7 @@ namespace ClasesNegocio
                     if (!(acceso.Lector["ImagenUrl"] is DBNull)) 
                         aux.UrlImagen = (string)acceso.Lector["ImagenUrl"];
                     if (!(acceso.Lector["Precio"] is DBNull)) 
-                        aux.Precio = float.Parse(acceso.Lector["Precio"].ToString());
+                        aux.Precio = acceso.Lector["Precio"].ToString();
 
                     lista.Add(aux);
                 }
@@ -99,7 +99,7 @@ namespace ClasesNegocio
                     if (!(acceso.Lector["ImagenUrl"] is DBNull))
                         aux.UrlImagen = (string)acceso.Lector["ImagenUrl"];
                     if (!(acceso.Lector["Precio"] is DBNull))
-                        aux.Precio = float.Parse(acceso.Lector["Precio"].ToString());
+                        aux.Precio = acceso.Lector["Precio"].ToString();
 
                     lista.Add(aux);
 
@@ -130,7 +130,7 @@ namespace ClasesNegocio
                 datos.setearParametros("@marca", obj.MarcaArticulo.Id);
                 datos.setearParametros("@categoria", obj.CategoriaArticulo.Id);
                 datos.setearParametros("@url", obj.UrlImagen);
-                datos.setearParametros("@precio", obj.Precio.ToString());
+                datos.setearParametros("@precio", obj.Precio);
 
                 datos.ejecutarAccion();
             }
@@ -144,7 +144,35 @@ namespace ClasesNegocio
                 datos.cerrarConsulta();
             }
         }
+        
+        public void Modificar(Articulos aux)
+        {
+            AccesoDatos datos = new AccesoDatos();           
+            try
+            {
+                datos.setearConsulta("Update ARTICULOS set Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion, IdMarca = @idMarca, IdCategoria = @idCategoria, ImagenUrl = @imagenUrl, Precio = @precio where Id = @id and Activo = 1");
+                datos.setearParametros("@id", aux.Id);
+                datos.setearParametros("@codigo", aux.CodigoArticulo);
+                datos.setearParametros("@nombre", aux.Nombre);
+                datos.setearParametros("@descripcion", aux.Descripcion);
+                datos.setearParametros("@idMarca", aux.MarcaArticulo.Id);
+                datos.setearParametros("@idCategoria", aux.CategoriaArticulo.Id);
+                datos.setearParametros("@imagenUrl", aux.UrlImagen);
+                datos.setearParametros("@precio", aux.Precio);
 
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConsulta();
+            }
+        }
+        
         public void EliminarLogico(Articulos obj)
         {
             AccesoDatos datos = new AccesoDatos();

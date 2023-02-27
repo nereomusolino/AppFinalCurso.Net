@@ -91,6 +91,7 @@
             this.btnModifcar.Name = "btnModifcar";
             this.btnModifcar.Size = new System.Drawing.Size(62, 22);
             this.btnModifcar.Text = "Modificar";
+            this.btnModifcar.Click += new System.EventHandler(this.btnModifcar_Click);
             // 
             // toolStripSeparator2
             // 
@@ -114,6 +115,7 @@
             // btnPapelera
             // 
             this.btnPapelera.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnPapelera.Enabled = false;
             this.btnPapelera.Image = ((System.Drawing.Image)(resources.GetObject("btnPapelera.Image")));
             this.btnPapelera.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnPapelera.Name = "btnPapelera";

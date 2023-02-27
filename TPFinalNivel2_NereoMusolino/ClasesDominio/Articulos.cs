@@ -29,7 +29,7 @@ namespace ClasesDominio
 
         [DisplayName("Url de imagen")]
         public string UrlImagen { get; set; }
-        public float Precio { get; set; }
+        public string Precio { get; set; }
 
     }
 }

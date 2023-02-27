@@ -15,9 +15,17 @@ namespace AppFinal
 {
     public partial class FormAgregar : Form
     {
+        private Articulos aux = null;
+
         public FormAgregar()
         {
             InitializeComponent();
+        }
+
+        public FormAgregar(Articulos aux)
+        {
+            InitializeComponent();
+            this.aux = aux;
         }
 
         private void CargarImagen(string url)
@@ -63,15 +71,15 @@ namespace AppFinal
             {
                 label6.Visible = true;
             }
-            /*if (txbPrecio.Text == "")
+            if (txbPrecio.Text == "")
             {
                 label7.Visible = true;
-            }*/
+            }
         }
 
         private bool ValidarTextbox()
         {
-            if (!(cmbCategoria.Text == "" || txbCodigo.Text == "" || txbDescripcion.Text == "" || cmbMarca.Text == "" || txbNombre.Text == "" || /*txbPrecio.Text == "" ||*/ txbUrlImagen.Text == ""))
+            if (!(cmbCategoria.Text == "" || txbCodigo.Text == "" || txbDescripcion.Text == "" || cmbMarca.Text == "" || txbNombre.Text == "" || txbPrecio.Text == "" || txbUrlImagen.Text == ""))
             {
                 return true;
             }
@@ -80,24 +88,36 @@ namespace AppFinal
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            ArticulosNegocio aux = new ArticulosNegocio();
-            Articulos obj = new Articulos();
-            
+            ArticulosNegocio obj = new ArticulosNegocio();         
             ValidarRequeridos();
 
             if(ValidarTextbox())
             {
-                obj.Nombre = txbNombre.Text;
-                obj.CodigoArticulo = txbCodigo.Text;
-                obj.Descripcion = txbDescripcion.Text;
-                obj.MarcaArticulo = (Marca)cmbMarca.SelectedItem;
-                obj.CategoriaArticulo = (Categoria)cmbCategoria.SelectedItem;
-                obj.UrlImagen = txbUrlImagen.Text;
-                //obj.Precio = float.Parse(txbPrecio.Text);
+                if(aux == null)
+                {
+                    aux = new Articulos();
+                }
+                aux.Nombre = txbNombre.Text;
+                aux.CodigoArticulo = txbCodigo.Text;
+                aux.Descripcion = txbDescripcion.Text;
+                aux.MarcaArticulo = (Marca)cmbMarca.SelectedItem;
+                aux.CategoriaArticulo = (Categoria)cmbCategoria.SelectedItem;
+                aux.UrlImagen = txbUrlImagen.Text;
+                aux.Precio = txbPrecio.Text;
 
                 try
                 {
-                    aux.Agregar(obj);
+                    if(aux.Id != 0)
+                    {
+                        obj.Modificar(aux);
+                        MessageBox.Show("Modificado exitosamente");
+                    }
+                    else
+                    {
+                        obj.Agregar(aux);
+                        MessageBox.Show("Agregado exitosamente");
+                    }
+
                     this.Close();
                 }
                 catch (Exception)
@@ -113,7 +133,24 @@ namespace AppFinal
             CategoriasNegocio categorias = new CategoriasNegocio();
 
             cmbMarca.DataSource = marcas.Listar();
+            cmbMarca.ValueMember = "Id";
+            cmbMarca.DisplayMember = "Descripcion";
             cmbCategoria.DataSource = categorias.Listar();
+            cmbCategoria.ValueMember = "Id";
+            cmbCategoria.DisplayMember = "Descripcion";
+
+            if (aux != null)
+            {
+                btnAgregar.Text = "Modificar";
+                txbCodigo.Text = aux.CodigoArticulo;
+                txbNombre.Text = aux.Nombre;
+                txbDescripcion.Text = aux.Descripcion;
+                txbUrlImagen.Text = aux.UrlImagen;
+                CargarImagen(aux.UrlImagen);
+                cmbMarca.SelectedValue = aux.MarcaArticulo.Id;
+                cmbCategoria.SelectedValue = aux.CategoriaArticulo.Id;
+                txbPrecio.Text = aux.Precio;
+            }
         }
     }
 }

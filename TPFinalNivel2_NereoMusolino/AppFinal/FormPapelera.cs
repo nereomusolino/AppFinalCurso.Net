@@ -45,12 +45,14 @@ namespace AppFinal
         {
             ArticulosNegocio aux = new ArticulosNegocio();
             try
-            {
+            {           
                 lista = aux.ListarPapelera();
                 dgvPapelera.DataSource = lista;
                 CargarImagen(lista[0].UrlImagen.ToString());
                 OcultarListas();
+
             }
+             
             catch (Exception)
             {
                 MessageBox.Show("No se pudo cargar el formulario");
@@ -69,6 +71,7 @@ namespace AppFinal
             {
                 obj.EliminarFisico((Articulos)dgvPapelera.CurrentRow.DataBoundItem);
                 CargarBasePapelera();
+
             }
             catch (Exception ex)
             {
