@@ -201,6 +201,7 @@ namespace AppFinal
         {
             FormPapelera form = new FormPapelera();
             form.ShowDialog();
+            CargarBase();
             FiltroPapelera();
         }
 
@@ -211,6 +212,33 @@ namespace AppFinal
             Modificar.ShowDialog();
             CargarBase();
             
+        }
+
+        private void txbBusqueda_TextChanged(object sender, EventArgs e)
+        {
+            List<Articulos> listaFiltrada;
+            string filtro = txbBusqueda.Text;
+
+            try
+            {
+                if(filtro != "")
+                {
+                    listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(filtro.ToUpper()) || x.Descripcion.ToUpper().Contains(filtro.ToUpper()) || x.MarcaArticulo.Descripcion.ToUpper().Contains(filtro.ToUpper()) || x.CategoriaArticulo.Descripcion.ToUpper().Contains(filtro.ToUpper()));
+                }
+                else
+                {
+                    listaFiltrada = lista;
+                }
+
+                dgvLista.DataSource = null;
+                dgvLista.DataSource = listaFiltrada;
+                OcultarListas();
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se pudo encontrar el archivo");
+            }
         }
     }
 }

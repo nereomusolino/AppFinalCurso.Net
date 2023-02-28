@@ -158,6 +158,7 @@
             this.txbBusqueda.Name = "txbBusqueda";
             this.txbBusqueda.Size = new System.Drawing.Size(239, 20);
             this.txbBusqueda.TabIndex = 7;
+            this.txbBusqueda.TextChanged += new System.EventHandler(this.txbBusqueda_TextChanged);
             // 
             // txbFiltro
             // 

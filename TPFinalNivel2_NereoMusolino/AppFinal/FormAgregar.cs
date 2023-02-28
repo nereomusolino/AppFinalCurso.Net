@@ -135,9 +135,11 @@ namespace AppFinal
             cmbMarca.DataSource = marcas.Listar();
             cmbMarca.ValueMember = "Id";
             cmbMarca.DisplayMember = "Descripcion";
+            cmbMarca.SelectedIndex = -1;
             cmbCategoria.DataSource = categorias.Listar();
             cmbCategoria.ValueMember = "Id";
             cmbCategoria.DisplayMember = "Descripcion";
+            cmbCategoria.SelectedIndex = -1;
 
             if (aux != null)
             {
@@ -150,6 +152,14 @@ namespace AppFinal
                 cmbMarca.SelectedValue = aux.MarcaArticulo.Id;
                 cmbCategoria.SelectedValue = aux.CategoriaArticulo.Id;
                 txbPrecio.Text = aux.Precio;
+            }
+        }
+
+        private void txbPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar < 48 || e.KeyChar > 59) && e.KeyChar != 8)
+            {
+                e.Handled = true;
             }
         }
     }

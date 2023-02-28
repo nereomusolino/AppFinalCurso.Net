@@ -193,6 +193,26 @@ namespace ClasesNegocio
             }
         }
 
+        public void Restaurar(Articulos obj)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("Update ARTICULOS set Activo = 1 where Id = @Id");
+                datos.setearParametros("@Id", obj.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConsulta();
+            }
+        }
+
         public void EliminarFisico(Articulos obj)
         {
             AccesoDatos datos = new AccesoDatos();
