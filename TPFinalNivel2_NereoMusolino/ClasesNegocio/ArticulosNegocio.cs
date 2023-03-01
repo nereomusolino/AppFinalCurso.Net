@@ -232,5 +232,132 @@ namespace ClasesNegocio
                 datos.cerrarConsulta();
             }
         }
+
+        public List<Articulos> BusquedaAvanzada(string campo, string criterio, string filtro)
+        {
+            List<Articulos> lista = new List<Articulos>();
+            AccesoDatos acceso = new AccesoDatos();
+
+            try
+            {
+                string consulta = "select A.Id, A.Codigo, A.Nombre, A.Descripcion, A.IdMarca, A.IdCategoria, M.Descripcion as Marca, C.Descripcion as Categoria, A.ImagenUrl, A.Precio from ARTICULOS A, MARCAS M, CATEGORIAS C where A.IdMarca = M.Id and A.IdCategoria = C.Id and Activo = 1 ";
+
+                if (campo == "Nombre")
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += "and A.Nombre like '" + filtro + "%'";
+                            break;
+                        case "Termina con":
+                            consulta += "and A.Nombre like '% " + filtro + "' ";
+                            break;
+                        case "Contiene":
+                            consulta += "and A.Nombre like '%" + filtro + "%' ";
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else if(campo == "Marca")
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += "and M.Descripcion like '" + filtro + "%'";
+                            break;
+                        case "Termina con":
+                            consulta += "and M.Descripcion like '% " + filtro + "' ";
+                            break;
+                        case "Contiene":
+                            consulta += "and M.Descripcion like '%" + filtro + "%' ";
+                            break;
+                        default:
+                            break;
+                    }
+
+                }
+                else if(campo == "Categoria")
+                {
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += "and C.Descripcion like '" + filtro + "%'";
+                            break;
+                        case "Termina con":
+                            consulta += "and C.Descripcion like '%" + filtro + "'";
+                            break;
+                        case "Contiene":
+                            consulta += "and C.Descripcion like '%" + filtro + "%'";
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else if(campo=="Precio")
+                {
+                    switch (criterio)
+                    {
+                        case "Mayor a":
+                            consulta += "and A.Precio > " + filtro;
+                            break;
+                        case "Menor a":
+                            consulta += "and A.Precio < " + filtro;
+                            break;
+                        case "Igual a":
+                            consulta += "and A.Precio = " + filtro;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                
+                acceso.setearConsulta(consulta);
+                acceso.ejecutarConsulta();
+
+                while (acceso.Lector.Read())
+                {
+                    Articulos aux = new Articulos();
+                    aux.MarcaArticulo = new Marca();
+                    aux.CategoriaArticulo = new Categoria();
+
+                    if (!(acceso.Lector["Id"] is DBNull))
+                        aux.Id = (int)acceso.Lector["Id"];
+                    if (!(acceso.Lector["Codigo"] is DBNull))
+                        aux.CodigoArticulo = (string)acceso.Lector["Codigo"];
+                    if (!(acceso.Lector["Nombre"] is DBNull))
+                        aux.Nombre = acceso.Lector["Nombre"].ToString();
+                    if (!(acceso.Lector["Descripcion"] is DBNull))
+                        aux.Descripcion = (string)acceso.Lector["Descripcion"];
+                    if (!(acceso.Lector["IdMarca"] is DBNull))
+                        aux.MarcaArticulo.Id = (int)acceso.Lector["IdMarca"];
+                    if (!(acceso.Lector["Marca"] is DBNull))
+                        aux.MarcaArticulo.Descripcion = acceso.Lector["Marca"].ToString();
+                    if (!(acceso.Lector["IdCategoria"] is DBNull))
+                        aux.CategoriaArticulo.Id = (int)acceso.Lector["IdCategoria"];
+                    if (!(acceso.Lector["Categoria"] is DBNull))
+                        aux.CategoriaArticulo.Descripcion = acceso.Lector["Categoria"].ToString();
+                    if (!(acceso.Lector["ImagenUrl"] is DBNull))
+                        aux.UrlImagen = (string)acceso.Lector["ImagenUrl"];
+                    if (!(acceso.Lector["Precio"] is DBNull))
+                        aux.Precio = acceso.Lector["Precio"].ToString();
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            finally
+            {
+                acceso.cerrarConsulta();
+            }
+            
+        }
     }
 }

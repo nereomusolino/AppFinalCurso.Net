@@ -162,5 +162,17 @@ namespace AppFinal
                 e.Handled = true;
             }
         }
+
+        private void btnAgregarImagen_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog archivo = new OpenFileDialog();
+            archivo.Filter = "jpg|*.jpg";
+            if(archivo.ShowDialog() == DialogResult.OK)
+            {
+                txbUrlImagen.Text = archivo.FileName;
+                CargarImagen(txbUrlImagen.Text);
+
+            }
+        }
     }
 }

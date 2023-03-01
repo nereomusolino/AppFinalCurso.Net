@@ -36,6 +36,10 @@ namespace AppFinal
             txbFiltro.Visible = true;
             btnBuscar.Visible = true;
             btnVolver.Visible = true;
+            cmbCriterio.SelectedIndex = -1;
+            cmbCampo.SelectedIndex = -1;
+            txbFiltro.Text = " ";
+
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -50,6 +54,16 @@ namespace AppFinal
             txbFiltro.Visible = false;
             btnBuscar.Visible = false;
             btnVolver.Visible = false;
+            try
+            {
+                CargarBase();
+                OcultarListas();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se pudo volver a la base original");
+            }
+
         }
 
         private void CargarImagen(string url)
@@ -113,38 +127,44 @@ namespace AppFinal
 
         private void cmbCampo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string opcion = cmbCampo.SelectedItem.ToString();
-            
-            if(opcion == "Nombre")
+            if (cmbCampo.SelectedIndex != -1)
             {
-                cmbCriterio.Items.Clear();
-                cmbCriterio.Items.Add("Comienza con");
-                cmbCriterio.Items.Add("Contiene");
+                string opcion = cmbCampo.SelectedItem.ToString();
 
+                if (opcion == "Nombre")
+                {
+
+                    cmbCriterio.Items.Clear();
+                    cmbCriterio.Items.Add("Comienza con");
+                    cmbCriterio.Items.Add("Termina con");
+                    cmbCriterio.Items.Add("Contiene");
+
+                }
+                else if (opcion == "Marca")
+                {
+                    cmbCriterio.Items.Clear();
+                    cmbCriterio.Items.Add("Comienza con");
+                    cmbCriterio.Items.Add("Termina con");
+                    cmbCriterio.Items.Add("Contiene");
+
+                }
+                else if (opcion == "Categoría")
+                {
+                    cmbCriterio.Items.Clear();
+                    cmbCriterio.Items.Add("Comienza con");
+                    cmbCriterio.Items.Add("Termina con");
+                    cmbCriterio.Items.Add("Contiene");
+
+                }
+                else
+                {
+                    cmbCriterio.Items.Clear();
+                    cmbCriterio.Items.Add("Mayor a ");
+                    cmbCriterio.Items.Add("Menor a");
+                    cmbCriterio.Items.Add("Igual a");
+
+                }
             }
-            else if(opcion == "Marca")
-            {
-                cmbCriterio.Items.Clear();
-                cmbCriterio.Items.Add("Comienza con");
-                cmbCriterio.Items.Add("Contiene");
-
-            }
-            else if (opcion == "Categoría")
-            {
-                cmbCriterio.Items.Clear();
-                cmbCriterio.Items.Add("Comienza con");
-                cmbCriterio.Items.Add("Contiene");
-
-            }
-            else
-            {
-                cmbCriterio.Items.Clear();
-                cmbCriterio.Items.Add("Mayor a ");
-                cmbCriterio.Items.Add("Menor a");
-                cmbCriterio.Items.Add("Igual a");
-
-            }
-
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -239,6 +259,38 @@ namespace AppFinal
             {
                 MessageBox.Show("No se pudo encontrar el archivo");
             }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            ArticulosNegocio obj = new ArticulosNegocio();
+
+
+            try
+            {
+                if(cmbCampo.SelectedIndex != -1 && cmbCriterio.SelectedIndex != -1 && txbFiltro.Text != " ") 
+                {
+                    string campo = cmbCampo.SelectedItem.ToString();
+                    string criterio = cmbCriterio.SelectedItem.ToString();
+                    string filtro = txbFiltro.Text;
+
+                    lista = obj.BusquedaAvanzada(campo, criterio, filtro);
+
+                    dgvLista.DataSource = null;
+                    dgvLista.DataSource = lista;
+                    OcultarListas();
+                }
+                else
+                {
+                    MessageBox.Show("Llene todos los campos");
+                }
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se pudo realizar la búsqueda");
+            }
+
         }
     }
 }
