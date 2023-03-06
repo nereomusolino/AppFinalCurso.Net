@@ -18,7 +18,7 @@ namespace ClasesNegocio
 
             try
             {
-                acceso.setearConsulta("select A.Id, A.Codigo, A.Nombre, A.Descripcion, A.IdMarca, A.IdCategoria, M.Descripcion as Marca, C.Descripcion as Categoria, A.ImagenUrl, A.Precio from ARTICULOS A, MARCAS M, CATEGORIAS C where A.IdMarca = M.Id and A.IdCategoria = C.Id and Activo = 1");
+                acceso.setearConsulta("select A.Id, A.Codigo, A.Nombre, A.Descripcion, A.IdMarca, A.IdCategoria, M.Descripcion as Marca, C.Descripcion as Categoria, A.ImagenUrl, A.Precio from ARTICULOS A, MARCAS M, CATEGORIAS C where A.IdMarca = M.Id and A.IdCategoria = C.Id");
                 acceso.ejecutarConsulta();
 
                 while (acceso.Lector.Read())
@@ -63,7 +63,7 @@ namespace ClasesNegocio
                 acceso.cerrarConsulta();
             }
         }
-
+        /*
         public List<Articulos> ListarPapelera()
         {
             AccesoDatos acceso = new AccesoDatos();
@@ -116,7 +116,7 @@ namespace ClasesNegocio
             {
                 acceso.cerrarConsulta();
             }
-        }
+        }*/
 
         public void Agregar (Articulos obj)
         {
@@ -150,7 +150,7 @@ namespace ClasesNegocio
             AccesoDatos datos = new AccesoDatos();           
             try
             {
-                datos.setearConsulta("Update ARTICULOS set Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion, IdMarca = @idMarca, IdCategoria = @idCategoria, ImagenUrl = @imagenUrl, Precio = @precio where Id = @id and Activo = 1");
+                datos.setearConsulta("Update ARTICULOS set Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion, IdMarca = @idMarca, IdCategoria = @idCategoria, ImagenUrl = @imagenUrl, Precio = @precio where Id = @id");
                 datos.setearParametros("@id", aux.Id);
                 datos.setearParametros("@codigo", aux.CodigoArticulo);
                 datos.setearParametros("@nombre", aux.Nombre);
@@ -172,7 +172,7 @@ namespace ClasesNegocio
                 datos.cerrarConsulta();
             }
         }
-        
+        /*
         public void EliminarLogico(Articulos obj)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -192,7 +192,7 @@ namespace ClasesNegocio
                 datos.cerrarConsulta();
             }
         }
-
+        *//*
         public void Restaurar(Articulos obj)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -212,7 +212,7 @@ namespace ClasesNegocio
                 datos.cerrarConsulta();
             }
         }
-
+        */
         public void EliminarFisico(Articulos obj)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -240,7 +240,7 @@ namespace ClasesNegocio
 
             try
             {
-                string consulta = "select A.Id, A.Codigo, A.Nombre, A.Descripcion, A.IdMarca, A.IdCategoria, M.Descripcion as Marca, C.Descripcion as Categoria, A.ImagenUrl, A.Precio from ARTICULOS A, MARCAS M, CATEGORIAS C where A.IdMarca = M.Id and A.IdCategoria = C.Id and Activo = 1 ";
+                string consulta = "select A.Id, A.Codigo, A.Nombre, A.Descripcion, A.IdMarca, A.IdCategoria, M.Descripcion as Marca, C.Descripcion as Categoria, A.ImagenUrl, A.Precio from ARTICULOS A, MARCAS M, CATEGORIAS C where A.IdMarca = M.Id and A.IdCategoria = C.Id ";
 
                 if (campo == "Nombre")
                 {

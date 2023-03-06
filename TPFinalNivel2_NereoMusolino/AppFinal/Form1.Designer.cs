@@ -50,6 +50,7 @@
             this.btnBusquedaAvanzada = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
+            this.btnDetallar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLista)).BeginInit();
             this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagenes)).BeginInit();
@@ -154,7 +155,7 @@
             // 
             // txbBusqueda
             // 
-            this.txbBusqueda.Location = new System.Drawing.Point(112, 50);
+            this.txbBusqueda.Location = new System.Drawing.Point(111, 45);
             this.txbBusqueda.Name = "txbBusqueda";
             this.txbBusqueda.Size = new System.Drawing.Size(239, 20);
             this.txbBusqueda.TabIndex = 7;
@@ -171,7 +172,7 @@
             // lblBuscar
             // 
             this.lblBuscar.AutoSize = true;
-            this.lblBuscar.Location = new System.Drawing.Point(13, 53);
+            this.lblBuscar.Location = new System.Drawing.Point(12, 48);
             this.lblBuscar.Name = "lblBuscar";
             this.lblBuscar.Size = new System.Drawing.Size(93, 13);
             this.lblBuscar.TabIndex = 9;
@@ -230,9 +231,9 @@
             // 
             // btnBusquedaAvanzada
             // 
-            this.btnBusquedaAvanzada.Location = new System.Drawing.Point(374, 50);
+            this.btnBusquedaAvanzada.Location = new System.Drawing.Point(398, 37);
             this.btnBusquedaAvanzada.Name = "btnBusquedaAvanzada";
-            this.btnBusquedaAvanzada.Size = new System.Drawing.Size(128, 20);
+            this.btnBusquedaAvanzada.Size = new System.Drawing.Size(114, 34);
             this.btnBusquedaAvanzada.TabIndex = 16;
             this.btnBusquedaAvanzada.Text = "Busqueda Avanzada";
             this.btnBusquedaAvanzada.UseVisualStyleBackColor = true;
@@ -260,11 +261,22 @@
             this.btnVolver.Visible = false;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
+            // btnDetallar
+            // 
+            this.btnDetallar.Location = new System.Drawing.Point(12, 316);
+            this.btnDetallar.Name = "btnDetallar";
+            this.btnDetallar.Size = new System.Drawing.Size(75, 23);
+            this.btnDetallar.TabIndex = 19;
+            this.btnDetallar.Text = "Ver Detalles";
+            this.btnDetallar.UseVisualStyleBackColor = true;
+            this.btnDetallar.Click += new System.EventHandler(this.btnDetallar_Click);
+            // 
             // FormApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(737, 351);
+            this.Controls.Add(this.btnDetallar);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnBusquedaAvanzada);
@@ -318,6 +330,7 @@
         private System.Windows.Forms.Button btnBusquedaAvanzada;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnVolver;
+        private System.Windows.Forms.Button btnDetallar;
     }
 }
 

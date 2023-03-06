@@ -21,7 +21,7 @@ namespace AppFinal
         {
             InitializeComponent();
         }
-
+        /*
         private void CargarImagen(string url)
         {
             try
@@ -33,14 +33,14 @@ namespace AppFinal
                 pbxPapelera.Load("https://static.vecteezy.com/system/resources/thumbnails/004/141/669/small_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg");
             }
         }
-
+        *//*
         private void OcultarListas()
         {
             dgvPapelera.Columns["UrlImagen"].Visible = false;
             dgvPapelera.Columns["Id"].Visible = false;
 
         }
-
+        *//*
         private bool ListaVacia(List<Articulos> lista)
         {
             if (lista == null)
@@ -53,7 +53,7 @@ namespace AppFinal
             }
             return true;
         }
-
+        *//*
         private void CargarBasePapelera()
         {
             ArticulosNegocio aux = new ArticulosNegocio();
@@ -79,19 +79,19 @@ namespace AppFinal
 
             
         }
-
+        *//*
         private void Papelera_Load(object sender, EventArgs e)
         {
-            CargarBasePapelera();
+            //CargarBasePapelera();
         }
-
+        *//*
         private void EliminarFisicamente_Click(object sender, EventArgs e)
         {
             ArticulosNegocio obj = new ArticulosNegocio();
             try
             {
                 obj.EliminarFisico((Articulos)dgvPapelera.CurrentRow.DataBoundItem);
-                CargarBasePapelera();
+                //CargarBasePapelera();
 
             }
             catch (Exception ex)
@@ -100,7 +100,7 @@ namespace AppFinal
                 throw ex;
             }
         }
-
+        *//*
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             List<Articulos> listaFiltrada;
@@ -127,7 +127,7 @@ namespace AppFinal
                 MessageBox.Show("No se pudo encontrar el archivo");
             }
         }
-
+        *//*
         private void btnRestaurar_Click(object sender, EventArgs e)
         {
             ArticulosNegocio obj = new ArticulosNegocio();
@@ -142,6 +142,7 @@ namespace AppFinal
 
                 MessageBox.Show("No se pudo restaurar el archivo");
             }
-        }
+        }*/
     }
+    
 }

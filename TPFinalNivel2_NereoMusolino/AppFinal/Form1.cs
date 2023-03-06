@@ -17,7 +17,7 @@ namespace AppFinal
     public partial class FormApp : Form
     {
         private List<Articulos> lista = new List<Articulos>();
-        private List<Articulos> listaPapelera = null;
+        //private List<Articulos> listaPapelera = null;
 
         public FormApp()
         {
@@ -105,7 +105,7 @@ namespace AppFinal
 
         private void FormApp_Load(object sender, EventArgs e)
         {
-            FiltroPapelera();
+            //FiltroPapelera();
             CargarBase();
             cmbCampo.Items.Add("Nombre");
             cmbCampo.Items.Add("Marca");
@@ -180,16 +180,17 @@ namespace AppFinal
 
             try
             {
-                aux.EliminarLogico((Articulos)dgvLista.CurrentRow.DataBoundItem);
+                //aux.EliminarLogico((Articulos)dgvLista.CurrentRow.DataBoundItem);
+                aux.EliminarFisico((Articulos)dgvLista.CurrentRow.DataBoundItem);
                 CargarBase();
-                FiltroPapelera();
+                //FiltroPapelera();
             }
             catch (Exception)
             {
                 MessageBox.Show("No se pudo eliminar el dato");
             }
         }
-
+        /*
         private bool ListaVacia(List<Articulos> lista)
         {
             if (lista == null)
@@ -202,7 +203,7 @@ namespace AppFinal
             }
             return true;
         }
-
+        *//*
         private void FiltroPapelera()
         {
             ArticulosNegocio aux = new ArticulosNegocio();
@@ -216,13 +217,13 @@ namespace AppFinal
                 btnPapelera.Enabled = false;
             }
         }
-
+        */
         private void btnPapelera_Click(object sender, EventArgs e)
         {
             FormPapelera form = new FormPapelera();
             form.ShowDialog();
             CargarBase();
-            FiltroPapelera();
+            //FiltroPapelera();
         }
 
         private void btnModifcar_Click(object sender, EventArgs e)
@@ -265,7 +266,6 @@ namespace AppFinal
         {
             ArticulosNegocio obj = new ArticulosNegocio();
 
-
             try
             {
                 if(cmbCampo.SelectedIndex != -1 && cmbCriterio.SelectedIndex != -1 && txbFiltro.Text != " ") 
@@ -291,6 +291,12 @@ namespace AppFinal
                 MessageBox.Show("No se pudo realizar la búsqueda");
             }
 
+        }
+
+        private void btnDetallar_Click(object sender, EventArgs e)
+        {
+            FormDetalles form = new FormDetalles((Articulos)dgvLista.CurrentRow.DataBoundItem);
+            form.ShowDialog();
         }
     }
 }

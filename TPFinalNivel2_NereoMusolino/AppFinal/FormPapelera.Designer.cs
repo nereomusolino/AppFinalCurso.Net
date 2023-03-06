@@ -66,7 +66,7 @@
             this.EliminarFisicamente.TabIndex = 2;
             this.EliminarFisicamente.Text = "Eliminar";
             this.EliminarFisicamente.UseVisualStyleBackColor = true;
-            this.EliminarFisicamente.Click += new System.EventHandler(this.EliminarFisicamente_Click);
+            //this.EliminarFisicamente.Click += new System.EventHandler(this.EliminarFisicamente_Click);
             // 
             // btnRestaurar
             // 
@@ -77,7 +77,7 @@
             this.btnRestaurar.TabIndex = 3;
             this.btnRestaurar.Text = "Restaurar";
             this.btnRestaurar.UseVisualStyleBackColor = false;
-            this.btnRestaurar.Click += new System.EventHandler(this.btnRestaurar_Click);
+            //this.btnRestaurar.Click += new System.EventHandler(this.btnRestaurar_Click);
             // 
             // txbBusquedaPapelera
             // 
@@ -85,7 +85,7 @@
             this.txbBusquedaPapelera.Name = "txbBusquedaPapelera";
             this.txbBusquedaPapelera.Size = new System.Drawing.Size(186, 20);
             this.txbBusquedaPapelera.TabIndex = 4;
-            this.txbBusquedaPapelera.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            //this.txbBusquedaPapelera.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // lblBusquedaPapelera
             // 
@@ -109,7 +109,7 @@
             this.Controls.Add(this.dgvPapelera);
             this.Name = "FormPapelera";
             this.Text = "Papelera";
-            this.Load += new System.EventHandler(this.Papelera_Load);
+            //this.Load += new System.EventHandler(this.Papelera_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPapelera)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPapelera)).EndInit();
             this.ResumeLayout(false);

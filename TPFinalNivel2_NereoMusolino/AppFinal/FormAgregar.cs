@@ -10,13 +10,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Configuration;
 
 namespace AppFinal
 {
     public partial class FormAgregar : Form
     {
         private Articulos aux = null;
-
+        private OpenFileDialog archivo = null;
         public FormAgregar()
         {
             InitializeComponent();
@@ -118,6 +120,11 @@ namespace AppFinal
                         MessageBox.Show("Agregado exitosamente");
                     }
 
+                    if(archivo != null && !(txbUrlImagen.Text.ToUpper().Contains("HTTP")))
+                    {
+                        File.Copy(archivo.FileName, ConfigurationManager.AppSettings["carpeta-imagenes"] + archivo.SafeFileName);
+                    }
+
                     this.Close();
                 }
                 catch (Exception)
@@ -165,13 +172,12 @@ namespace AppFinal
 
         private void btnAgregarImagen_Click(object sender, EventArgs e)
         {
-            OpenFileDialog archivo = new OpenFileDialog();
-            archivo.Filter = "jpg|*.jpg";
+            archivo = new OpenFileDialog();
+            archivo.Filter = "jpg|*.jpg;|png|*.png";
             if(archivo.ShowDialog() == DialogResult.OK)
             {
                 txbUrlImagen.Text = archivo.FileName;
                 CargarImagen(txbUrlImagen.Text);
-
             }
         }
     }
