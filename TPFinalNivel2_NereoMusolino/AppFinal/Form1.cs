@@ -272,17 +272,19 @@ namespace AppFinal
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             ArticulosNegocio obj = new ArticulosNegocio();
+            string campo;
+            string criterio;
+            string filtro;
 
             try
             {
-                if(cmbCampo.SelectedIndex != -1 && cmbCriterio.SelectedIndex != -1 && txbFiltro.Text != " ") 
+
+                if (cmbCampo.SelectedIndex != -1 && cmbCriterio.SelectedIndex != -1 && txbFiltro.Text != " ") 
                 {
-                    string campo = cmbCampo.SelectedItem.ToString();
-                    string criterio = cmbCriterio.SelectedItem.ToString();
-                    string filtro = txbFiltro.Text;
-
+                    campo = cmbCampo.SelectedItem.ToString();
+                    criterio = cmbCriterio.SelectedItem.ToString();
+                    filtro = txbFiltro.Text;
                     lista = obj.BusquedaAvanzada(campo, criterio, filtro);
-
                     dgvLista.DataSource = null;
                     dgvLista.DataSource = lista;
                     OcultarListas();

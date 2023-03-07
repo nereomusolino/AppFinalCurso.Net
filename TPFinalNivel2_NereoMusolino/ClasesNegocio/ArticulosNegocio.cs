@@ -238,80 +238,84 @@ namespace ClasesNegocio
             List<Articulos> lista = new List<Articulos>();
             AccesoDatos acceso = new AccesoDatos();
 
-            try
+            string consulta = "select A.Id, A.Codigo, A.Nombre, A.Descripcion, A.IdMarca, A.IdCategoria, M.Descripcion as Marca, C.Descripcion as Categoria, A.ImagenUrl, A.Precio from ARTICULOS A, MARCAS M, CATEGORIAS C where A.IdMarca = M.Id and A.IdCategoria = C.Id and ";
+
+            switch (campo)
             {
-                string consulta = "select A.Id, A.Codigo, A.Nombre, A.Descripcion, A.IdMarca, A.IdCategoria, M.Descripcion as Marca, C.Descripcion as Categoria, A.ImagenUrl, A.Precio from ARTICULOS A, MARCAS M, CATEGORIAS C where A.IdMarca = M.Id and A.IdCategoria = C.Id ";
+                case "Nombre":
+                    switch (criterio)
+                    {
+                        case "Comienza con":
+                            consulta += "A.Nombre like '" + filtro + "%'";
+                            break;
+                        case "Termina con":
+                            consulta += "A.Nombre like '% " + filtro + "'";
+                            break;
+                        case "Contiene":
+                            consulta += "A.Nombre like '%" + filtro + "%'";
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
 
-                if (campo == "Nombre")
-                {
+                case "Marca":
                     switch (criterio)
                     {
                         case "Comienza con":
-                            consulta += "and A.Nombre like '" + filtro + "%'";
+                            consulta += "M.Descripcion like '" + filtro + "%'";
                             break;
                         case "Termina con":
-                            consulta += "and A.Nombre like '% " + filtro + "'";
+                            consulta += "M.Descripcion like '% " + filtro + "'";
                             break;
                         case "Contiene":
-                            consulta += "and A.Nombre like '%" + filtro + "%'";
+                            consulta += "M.Descripcion like '%" + filtro + "%'";
                             break;
                         default:
                             break;
                     }
-                }
-                else if(campo == "Marca")
-                {
-                    switch (criterio)
-                    {
-                        case "Comienza con":
-                            consulta += "and M.Descripcion like '" + filtro + "%'";
-                            break;
-                        case "Termina con":
-                            consulta += "and M.Descripcion like '% " + filtro + "'";
-                            break;
-                        case "Contiene":
-                            consulta += "and M.Descripcion like '%" + filtro + "%'";
-                            break;
-                        default:
-                            break;
-                    }
+                    break;
 
-                }
-                else if(campo == "Categoria")
-                {
+                case "Categoria":
                     switch (criterio)
                     {
                         case "Comienza con":
-                            consulta += "and C.Descripcion like '" + filtro + "%'";
+                            consulta += "C.Descripcion like '" + filtro + "%'";
                             break;
                         case "Termina con":
-                            consulta += "and C.Descripcion like '%" + filtro + "'";
+                            consulta += "C.Descripcion like '%" + filtro + "'";
                             break;
                         case "Contiene":
-                            consulta += "and C.Descripcion like '%" + filtro + "%'";
+                            consulta += "C.Descripcion like '%" + filtro + "%'";
                             break;
                         default:
                             break;
                     }
-                }
-                else if(campo=="Precio")
-                {
+                    break;
+
+                case "Precio":
                     switch (criterio)
                     {
                         case "Mayor a":
-                            consulta += "and A.Precio > " + filtro;
+                            consulta += "A.Precio > " + filtro;
                             break;
                         case "Menor a":
-                            consulta += "and A.Precio < " + filtro;
+                            consulta += "A.Precio < " + filtro;
                             break;
                         case "Igual a":
-                            consulta += "and A.Precio = " + filtro;
+                            consulta += "A.Precio = " + filtro;
                             break;
                         default:
                             break;
                     }
-                }
-                
+                    break;
+
+                default:
+                    break;
+            }
+
+            try
+            {
                 acceso.setearConsulta(consulta);
                 acceso.ejecutarConsulta();
 
@@ -347,17 +351,15 @@ namespace ClasesNegocio
 
                 return lista;
             }
-
             catch (Exception ex)
             {
                 throw ex;
             }
-
             finally
             {
                 acceso.cerrarConsulta();
             }
-            
+
         }
     }
 }
