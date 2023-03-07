@@ -177,17 +177,24 @@ namespace AppFinal
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             ArticulosNegocio aux = new ArticulosNegocio();
-
-            try
+            DialogResult respuesta = MessageBox.Show("Esta seguro que desea eliminar?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if(respuesta == DialogResult.Yes)
             {
-                //aux.EliminarLogico((Articulos)dgvLista.CurrentRow.DataBoundItem);
-                aux.EliminarFisico((Articulos)dgvLista.CurrentRow.DataBoundItem);
-                CargarBase();
-                //FiltroPapelera();
+                try
+                {
+                    //aux.EliminarLogico((Articulos)dgvLista.CurrentRow.DataBoundItem);
+                    aux.EliminarFisico((Articulos)dgvLista.CurrentRow.DataBoundItem);
+                    CargarBase();
+                    //FiltroPapelera();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("No se pudo eliminar el dato");
+                }
             }
-            catch (Exception)
+            else if(respuesta == DialogResult.No)
             {
-                MessageBox.Show("No se pudo eliminar el dato");
+                return;
             }
         }
         /*

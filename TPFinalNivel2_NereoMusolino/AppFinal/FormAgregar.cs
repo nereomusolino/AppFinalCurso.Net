@@ -150,6 +150,7 @@ namespace AppFinal
 
             if (aux != null)
             {
+                this.Name = "Modificar";
                 btnAgregar.Text = "Modificar";
                 txbCodigo.Text = aux.CodigoArticulo;
                 txbNombre.Text = aux.Nombre;

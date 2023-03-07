@@ -250,10 +250,10 @@ namespace ClasesNegocio
                             consulta += "and A.Nombre like '" + filtro + "%'";
                             break;
                         case "Termina con":
-                            consulta += "and A.Nombre like '% " + filtro + "' ";
+                            consulta += "and A.Nombre like '% " + filtro + "'";
                             break;
                         case "Contiene":
-                            consulta += "and A.Nombre like '%" + filtro + "%' ";
+                            consulta += "and A.Nombre like '%" + filtro + "%'";
                             break;
                         default:
                             break;
@@ -267,10 +267,10 @@ namespace ClasesNegocio
                             consulta += "and M.Descripcion like '" + filtro + "%'";
                             break;
                         case "Termina con":
-                            consulta += "and M.Descripcion like '% " + filtro + "' ";
+                            consulta += "and M.Descripcion like '% " + filtro + "'";
                             break;
                         case "Contiene":
-                            consulta += "and M.Descripcion like '%" + filtro + "%' ";
+                            consulta += "and M.Descripcion like '%" + filtro + "%'";
                             break;
                         default:
                             break;

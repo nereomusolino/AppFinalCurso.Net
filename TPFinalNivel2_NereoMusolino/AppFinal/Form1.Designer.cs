@@ -67,7 +67,7 @@
             this.dgvLista.Location = new System.Drawing.Point(12, 85);
             this.dgvLista.Name = "dgvLista";
             this.dgvLista.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvLista.Size = new System.Drawing.Size(500, 178);
+            this.dgvLista.Size = new System.Drawing.Size(500, 190);
             this.dgvLista.TabIndex = 0;
             this.dgvLista.SelectionChanged += new System.EventHandler(this.dgvLista_SelectionChanged);
             // 
@@ -148,7 +148,7 @@
             this.pbImagenes.BackColor = System.Drawing.SystemColors.Control;
             this.pbImagenes.Location = new System.Drawing.Point(531, 85);
             this.pbImagenes.Name = "pbImagenes";
-            this.pbImagenes.Size = new System.Drawing.Size(182, 178);
+            this.pbImagenes.Size = new System.Drawing.Size(182, 190);
             this.pbImagenes.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbImagenes.TabIndex = 6;
             this.pbImagenes.TabStop = false;
@@ -231,9 +231,10 @@
             // 
             // btnBusquedaAvanzada
             // 
-            this.btnBusquedaAvanzada.Location = new System.Drawing.Point(398, 37);
+            this.btnBusquedaAvanzada.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnBusquedaAvanzada.Location = new System.Drawing.Point(111, 327);
             this.btnBusquedaAvanzada.Name = "btnBusquedaAvanzada";
-            this.btnBusquedaAvanzada.Size = new System.Drawing.Size(114, 34);
+            this.btnBusquedaAvanzada.Size = new System.Drawing.Size(138, 24);
             this.btnBusquedaAvanzada.TabIndex = 16;
             this.btnBusquedaAvanzada.Text = "Busqueda Avanzada";
             this.btnBusquedaAvanzada.UseVisualStyleBackColor = true;
@@ -254,7 +255,7 @@
             // 
             this.btnVolver.Location = new System.Drawing.Point(650, 88);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.Size = new System.Drawing.Size(15, 20);
+            this.btnVolver.Size = new System.Drawing.Size(23, 20);
             this.btnVolver.TabIndex = 18;
             this.btnVolver.Text = "↑";
             this.btnVolver.UseVisualStyleBackColor = true;
@@ -263,9 +264,10 @@
             // 
             // btnDetallar
             // 
-            this.btnDetallar.Location = new System.Drawing.Point(12, 316);
+            this.btnDetallar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDetallar.Location = new System.Drawing.Point(12, 327);
             this.btnDetallar.Name = "btnDetallar";
-            this.btnDetallar.Size = new System.Drawing.Size(75, 23);
+            this.btnDetallar.Size = new System.Drawing.Size(93, 24);
             this.btnDetallar.TabIndex = 19;
             this.btnDetallar.Text = "Ver Detalles";
             this.btnDetallar.UseVisualStyleBackColor = true;
@@ -275,7 +277,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(737, 351);
+            this.ClientSize = new System.Drawing.Size(737, 363);
             this.Controls.Add(this.btnDetallar);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnBuscar);
