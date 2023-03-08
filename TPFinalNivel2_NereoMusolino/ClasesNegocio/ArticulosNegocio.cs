@@ -237,7 +237,7 @@ namespace ClasesNegocio
         {
             List<Articulos> lista = new List<Articulos>();
             AccesoDatos acceso = new AccesoDatos();
-
+           
             string consulta = "select A.Id, A.Codigo, A.Nombre, A.Descripcion, A.IdMarca, A.IdCategoria, M.Descripcion as Marca, C.Descripcion as Categoria, A.ImagenUrl, A.Precio from ARTICULOS A, MARCAS M, CATEGORIAS C where A.IdMarca = M.Id and A.IdCategoria = C.Id and ";
 
             switch (campo)
@@ -249,7 +249,7 @@ namespace ClasesNegocio
                             consulta += "A.Nombre like '" + filtro + "%'";
                             break;
                         case "Termina con":
-                            consulta += "A.Nombre like '% " + filtro + "'";
+                            consulta += "A.Nombre like '%" + filtro + "'";
                             break;
                         case "Contiene":
                             consulta += "A.Nombre like '%" + filtro + "%'";
@@ -266,7 +266,7 @@ namespace ClasesNegocio
                             consulta += "M.Descripcion like '" + filtro + "%'";
                             break;
                         case "Termina con":
-                            consulta += "M.Descripcion like '% " + filtro + "'";
+                            consulta += "M.Descripcion like '%" + filtro + "'";
                             break;
                         case "Contiene":
                             consulta += "M.Descripcion like '%" + filtro + "%'";
@@ -276,7 +276,7 @@ namespace ClasesNegocio
                     }
                     break;
 
-                case "Categoria":
+                case "Categoría":
                     switch (criterio)
                     {
                         case "Comienza con":
@@ -310,10 +310,8 @@ namespace ClasesNegocio
                     }
                     break;
 
-                default:
-                    break;
             }
-
+                
             try
             {
                 acceso.setearConsulta(consulta);
@@ -359,7 +357,6 @@ namespace ClasesNegocio
             {
                 acceso.cerrarConsulta();
             }
-
         }
     }
 }

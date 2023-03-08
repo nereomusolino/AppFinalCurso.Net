@@ -19,21 +19,21 @@ namespace ClasesNegocio
         }
         public AccesoDatos()
         {
-            conexion = new SqlConnection("server = NEREO\\SQLEXPRESS; database = CATALOGO_DB; integrated security = true");
+            conexion = new SqlConnection("server = .\\SQLEXPRESS; database = CATALOGO_DB; integrated security = true");
             comando = new SqlCommand();
         }
 
         public void setearConsulta(string consulta)
         {
             comando.CommandType = System.Data.CommandType.Text;
-            comando.CommandText= consulta;
+            comando.CommandText = consulta;
         }
 
         public void ejecutarConsulta()
         {
-            comando.Connection = conexion;
             try
             {
+                comando.Connection = conexion;
                 conexion.Open();
                 lector = comando.ExecuteReader();
             }

@@ -40,7 +40,6 @@
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.pbImagenes = new System.Windows.Forms.PictureBox();
             this.txbBusqueda = new System.Windows.Forms.TextBox();
-            this.txbFiltro = new System.Windows.Forms.TextBox();
             this.lblBuscar = new System.Windows.Forms.Label();
             this.cmbCampo = new System.Windows.Forms.ComboBox();
             this.cmbCriterio = new System.Windows.Forms.ComboBox();
@@ -51,6 +50,8 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
             this.btnDetallar = new System.Windows.Forms.Button();
+            this.txbFiltro = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLista)).BeginInit();
             this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagenes)).BeginInit();
@@ -161,14 +162,6 @@
             this.txbBusqueda.TabIndex = 7;
             this.txbBusqueda.TextChanged += new System.EventHandler(this.txbBusqueda_TextChanged);
             // 
-            // txbFiltro
-            // 
-            this.txbFiltro.Location = new System.Drawing.Point(440, 88);
-            this.txbFiltro.Name = "txbFiltro";
-            this.txbFiltro.Size = new System.Drawing.Size(100, 20);
-            this.txbFiltro.TabIndex = 8;
-            this.txbFiltro.Visible = false;
-            // 
             // lblBuscar
             // 
             this.lblBuscar.AutoSize = true;
@@ -273,11 +266,29 @@
             this.btnDetallar.UseVisualStyleBackColor = true;
             this.btnDetallar.Click += new System.EventHandler(this.btnDetallar_Click);
             // 
+            // txbFiltro
+            // 
+            this.txbFiltro.Location = new System.Drawing.Point(440, 88);
+            this.txbFiltro.Name = "txbFiltro";
+            this.txbFiltro.Size = new System.Drawing.Size(100, 20);
+            this.txbFiltro.TabIndex = 8;
+            this.txbFiltro.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 311);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "label1";
+            // 
             // FormApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(737, 363);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnDetallar);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnBuscar);
@@ -294,7 +305,6 @@
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.dgvLista);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(753, 482);
             this.MinimumSize = new System.Drawing.Size(753, 390);
             this.Name = "FormApp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -322,7 +332,6 @@
         private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.PictureBox pbImagenes;
         private System.Windows.Forms.TextBox txbBusqueda;
-        private System.Windows.Forms.TextBox txbFiltro;
         private System.Windows.Forms.Label lblBuscar;
         private System.Windows.Forms.ComboBox cmbCampo;
         private System.Windows.Forms.ComboBox cmbCriterio;
@@ -333,6 +342,8 @@
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.Button btnDetallar;
+        private System.Windows.Forms.TextBox txbFiltro;
+        private System.Windows.Forms.Label label1;
     }
 }
 

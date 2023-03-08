@@ -38,7 +38,7 @@ namespace AppFinal
             btnVolver.Visible = true;
             cmbCriterio.SelectedIndex = -1;
             cmbCampo.SelectedIndex = -1;
-            txbFiltro.Text = " ";
+            txbFiltro.Text = "";
 
         }
 
@@ -57,7 +57,6 @@ namespace AppFinal
             try
             {
                 CargarBase();
-                OcultarListas();
             }
             catch (Exception)
             {
@@ -80,8 +79,15 @@ namespace AppFinal
 
         private void OcultarListas()
         {
-            dgvLista.Columns["UrlImagen"].Visible = false;
-            dgvLista.Columns["Id"].Visible = false;
+            if(dgvLista.CurrentRow != null)
+            {
+                dgvLista.Columns["UrlImagen"].Visible = false;
+                dgvLista.Columns["Id"].Visible = false;
+            }
+            else
+            {
+                MessageBox.Show("La lista esta vacia");
+            }
 
         }
 
@@ -91,9 +97,17 @@ namespace AppFinal
             try
             {
                 lista = aux.Listar();
-                dgvLista.DataSource = lista;
-                CargarImagen(lista[0].UrlImagen.ToString());
-                OcultarListas();
+                if(lista != null)
+                {
+                    dgvLista.DataSource = lista;
+                    CargarImagen(lista[0].UrlImagen.ToString());
+                    OcultarListas();
+
+                }
+                else
+                {
+                    MessageBox.Show("La lista esta vacia");
+                }
             }
             catch (Exception)
             {
@@ -159,7 +173,7 @@ namespace AppFinal
                 else
                 {
                     cmbCriterio.Items.Clear();
-                    cmbCriterio.Items.Add("Mayor a ");
+                    cmbCriterio.Items.Add("Mayor a");
                     cmbCriterio.Items.Add("Menor a");
                     cmbCriterio.Items.Add("Igual a");
 
@@ -272,21 +286,18 @@ namespace AppFinal
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             ArticulosNegocio obj = new ArticulosNegocio();
-            string campo;
-            string criterio;
-            string filtro;
 
             try
             {
 
-                if (cmbCampo.SelectedIndex != -1 && cmbCriterio.SelectedIndex != -1 && txbFiltro.Text != " ") 
-                {
-                    campo = cmbCampo.SelectedItem.ToString();
-                    criterio = cmbCriterio.SelectedItem.ToString();
-                    filtro = txbFiltro.Text;
-                    lista = obj.BusquedaAvanzada(campo, criterio, filtro);
-                    dgvLista.DataSource = null;
-                    dgvLista.DataSource = lista;
+                if (cmbCampo.SelectedIndex != -1 && cmbCriterio.SelectedIndex != -1 && txbFiltro.Text != "")
+                { 
+                   string campo = cmbCampo.SelectedItem.ToString();
+                   string criterio = cmbCriterio.SelectedItem.ToString();
+                   string filtro = txbFiltro.Text;
+
+                    dgvLista.DataSource = obj.BusquedaAvanzada(campo, criterio, filtro);
+
                     OcultarListas();
                 }
                 else
