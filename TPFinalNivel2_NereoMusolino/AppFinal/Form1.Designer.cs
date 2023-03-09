@@ -51,7 +51,6 @@
             this.btnVolver = new System.Windows.Forms.Button();
             this.btnDetallar = new System.Windows.Forms.Button();
             this.txbFiltro = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLista)).BeginInit();
             this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagenes)).BeginInit();
@@ -274,21 +273,11 @@
             this.txbFiltro.TabIndex = 8;
             this.txbFiltro.Visible = false;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 311);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "label1";
-            // 
             // FormApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(737, 363);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnDetallar);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnBuscar);
@@ -305,7 +294,8 @@
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.dgvLista);
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(753, 390);
+            this.MaximumSize = new System.Drawing.Size(753, 479);
+            this.MinimumSize = new System.Drawing.Size(753, 402);
             this.Name = "FormApp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "App Articulos";
@@ -343,7 +333,6 @@
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.Button btnDetallar;
         private System.Windows.Forms.TextBox txbFiltro;
-        private System.Windows.Forms.Label label1;
     }
 }
 
