@@ -63,7 +63,7 @@ namespace ClasesNegocio
                 acceso.cerrarConsulta();
             }
         }
-        /*
+        
         public List<Articulos> ListarPapelera()
         {
             AccesoDatos acceso = new AccesoDatos();
@@ -116,7 +116,7 @@ namespace ClasesNegocio
             {
                 acceso.cerrarConsulta();
             }
-        }*/
+        }
 
         public void Agregar (Articulos obj)
         {
@@ -172,7 +172,7 @@ namespace ClasesNegocio
                 datos.cerrarConsulta();
             }
         }
-        /*
+        
         public void EliminarLogico(Articulos obj)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -192,7 +192,7 @@ namespace ClasesNegocio
                 datos.cerrarConsulta();
             }
         }
-        *//*
+        
         public void Restaurar(Articulos obj)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -212,7 +212,7 @@ namespace ClasesNegocio
                 datos.cerrarConsulta();
             }
         }
-        */
+        
         public void EliminarFisico(Articulos obj)
         {
             AccesoDatos datos = new AccesoDatos();
