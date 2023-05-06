@@ -21,7 +21,7 @@ namespace AppFinal
         {
             InitializeComponent();
         }
-        /*
+        
         private void CargarImagen(string url)
         {
             try
@@ -33,14 +33,14 @@ namespace AppFinal
                 pbxPapelera.Load("https://static.vecteezy.com/system/resources/thumbnails/004/141/669/small_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg");
             }
         }
-        *//*
+        
         private void OcultarListas()
         {
             dgvPapelera.Columns["UrlImagen"].Visible = false;
             dgvPapelera.Columns["Id"].Visible = false;
 
         }
-        *//*
+        
         private bool ListaVacia(List<Articulos> lista)
         {
             if (lista == null)
@@ -53,55 +53,80 @@ namespace AppFinal
             }
             return true;
         }
-        *//*
+        
         private void CargarBasePapelera()
         {
             ArticulosNegocio aux = new ArticulosNegocio();
-  
             try
             {
                 lista = aux.ListarPapelera();
-                dgvPapelera.DataSource = lista;
-
-                if (ListaVacia(lista)==true)
+                if(lista != null)
                 {
-
+                    dgvPapelera.DataSource = lista;
                     CargarImagen(lista[0].UrlImagen.ToString());
                     OcultarListas();
-                }
 
+                }
+                else
+                {
+                    MessageBox.Show("La lista esta vacia");
+                }
             }
 
             catch (Exception)
             {
-                MessageBox.Show("No se pudo cargar el formulario");
+                MessageBox.Show("Todos los registros han sido eliminados y/o restaurados");
             }
 
             
         }
-        *//*
-        private void Papelera_Load(object sender, EventArgs e)
+
+        private void FormPapelera_Load(object sender, EventArgs e)
         {
-            //CargarBasePapelera();
+            CargarBasePapelera();
         }
-        *//*
-        private void EliminarFisicamente_Click(object sender, EventArgs e)
+
+        private void EliminarFisicamente_Click_1(object sender, EventArgs e)
         {
             ArticulosNegocio obj = new ArticulosNegocio();
-            try
+            DialogResult respuesta = MessageBox.Show("Esta seguro que desea eliminar?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (respuesta == DialogResult.Yes)
             {
-                obj.EliminarFisico((Articulos)dgvPapelera.CurrentRow.DataBoundItem);
-                //CargarBasePapelera();
+                try
+                {
+                    obj.EliminarFisico((Articulos)dgvPapelera.CurrentRow.DataBoundItem);
+                    CargarBasePapelera();
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
 
             }
-            catch (Exception ex)
+            else if (respuesta == DialogResult.No)
             {
-
-                throw ex;
+                return;
             }
         }
-        *//*
-        private void textBox1_TextChanged(object sender, EventArgs e)
+
+        private void btnRestaurar_Click_1(object sender, EventArgs e)
+        {
+            ArticulosNegocio obj = new ArticulosNegocio();
+
+            try
+            {
+                obj.Restaurar((Articulos)dgvPapelera.CurrentRow.DataBoundItem);
+                CargarBasePapelera();
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("No se pudo restaurar el archivo");
+            }
+        }
+
+        private void txbBusquedaPapelera_TextChanged(object sender, EventArgs e)
         {
             List<Articulos> listaFiltrada;
             string filtro = txbBusquedaPapelera.Text;
@@ -127,22 +152,6 @@ namespace AppFinal
                 MessageBox.Show("No se pudo encontrar el archivo");
             }
         }
-        *//*
-        private void btnRestaurar_Click(object sender, EventArgs e)
-        {
-            ArticulosNegocio obj = new ArticulosNegocio();
-
-            try
-            {
-                obj.Restaurar((Articulos)dgvPapelera.CurrentRow.DataBoundItem);
-                CargarBasePapelera();
-            }
-            catch (Exception)
-            {
-
-                MessageBox.Show("No se pudo restaurar el archivo");
-            }
-        }*/
     }
     
 }

@@ -17,7 +17,7 @@ namespace AppFinal
     public partial class FormApp : Form
     {
         private List<Articulos> lista = new List<Articulos>();
-        //private List<Articulos> listaPapelera = null;
+        private List<Articulos> listaPapelera = null;
 
         public FormApp()
         {
@@ -111,7 +111,6 @@ namespace AppFinal
             }
             catch (Exception)
             {
-
                 MessageBox.Show("No se pudo cargar el formulario");
             }
 
@@ -119,7 +118,7 @@ namespace AppFinal
 
         private void FormApp_Load(object sender, EventArgs e)
         {
-            //FiltroPapelera();
+            FiltroPapelera();
             CargarBase();
             cmbCampo.Items.Add("Nombre");
             cmbCampo.Items.Add("Marca");
@@ -191,15 +190,15 @@ namespace AppFinal
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             ArticulosNegocio aux = new ArticulosNegocio();
-            DialogResult respuesta = MessageBox.Show("Esta seguro que desea eliminar?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult respuesta = MessageBox.Show("Esta seguro que desea eliminar?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if(respuesta == DialogResult.Yes)
             {
                 try
                 {
-                    //aux.EliminarLogico((Articulos)dgvLista.CurrentRow.DataBoundItem);
-                    aux.EliminarFisico((Articulos)dgvLista.CurrentRow.DataBoundItem);
+                    aux.EliminarLogico((Articulos)dgvLista.CurrentRow.DataBoundItem);
+                    //aux.EliminarFisico((Articulos)dgvLista.CurrentRow.DataBoundItem);
                     CargarBase();
-                    //FiltroPapelera();
+                    FiltroPapelera();
                 }
                 catch (Exception)
                 {
@@ -211,7 +210,7 @@ namespace AppFinal
                 return;
             }
         }
-        /*
+        
         private bool ListaVacia(List<Articulos> lista)
         {
             if (lista == null)
@@ -224,12 +223,12 @@ namespace AppFinal
             }
             return true;
         }
-        *//*
+        
         private void FiltroPapelera()
         {
             ArticulosNegocio aux = new ArticulosNegocio();
             listaPapelera = aux.ListarPapelera();
-            if (ListaVacia(listaPapelera) == true)
+            if (ListaVacia(listaPapelera))
             {
                 btnPapelera.Enabled = true;
             }
@@ -238,13 +237,13 @@ namespace AppFinal
                 btnPapelera.Enabled = false;
             }
         }
-        */
+        
         private void btnPapelera_Click(object sender, EventArgs e)
         {
             FormPapelera form = new FormPapelera();
             form.ShowDialog();
             CargarBase();
-            //FiltroPapelera();
+            FiltroPapelera();
         }
 
         private void btnModifcar_Click(object sender, EventArgs e)

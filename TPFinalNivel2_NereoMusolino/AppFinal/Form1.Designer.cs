@@ -121,7 +121,7 @@
             this.btnPapelera.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnPapelera.Name = "btnPapelera";
             this.btnPapelera.Size = new System.Drawing.Size(23, 22);
-            this.btnPapelera.Text = "toolStripButton4";
+            this.btnPapelera.Text = "Papelera";
             this.btnPapelera.Click += new System.EventHandler(this.btnPapelera_Click);
             // 
             // toolStrip

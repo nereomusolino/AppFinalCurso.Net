@@ -18,7 +18,7 @@ namespace ClasesNegocio
 
             try
             {
-                acceso.setearConsulta("select A.Id, A.Codigo, A.Nombre, A.Descripcion, A.IdMarca, A.IdCategoria, M.Descripcion as Marca, C.Descripcion as Categoria, A.ImagenUrl, A.Precio from ARTICULOS A, MARCAS M, CATEGORIAS C where A.IdMarca = M.Id and A.IdCategoria = C.Id");
+                acceso.setearConsulta("select A.Id, A.Codigo, A.Nombre, A.Descripcion, A.IdMarca, A.IdCategoria, M.Descripcion as Marca, C.Descripcion as Categoria, A.ImagenUrl, A.Precio from ARTICULOS A, MARCAS M, CATEGORIAS C where A.IdMarca = M.Id and A.IdCategoria = C.Id and Activo = 1");
                 acceso.ejecutarConsulta();
 
                 while (acceso.Lector.Read())
@@ -118,7 +118,7 @@ namespace ClasesNegocio
             }
         }
 
-        public void Agregar (Articulos obj)
+        public void Agregar(Articulos obj)
         {
             AccesoDatos datos = new AccesoDatos();
             try
