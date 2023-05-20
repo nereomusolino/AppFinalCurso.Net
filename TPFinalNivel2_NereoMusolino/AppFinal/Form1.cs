@@ -196,7 +196,6 @@ namespace AppFinal
                 try
                 {
                     aux.EliminarLogico((Articulos)dgvLista.CurrentRow.DataBoundItem);
-                    //aux.EliminarFisico((Articulos)dgvLista.CurrentRow.DataBoundItem);
                     CargarBase();
                     FiltroPapelera();
                 }
